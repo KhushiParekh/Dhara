@@ -16,7 +16,7 @@ const rainIcon = rainImage;
 
 const GlassCard = ({ children }) => {
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border-x-2 border-green-700 shadow-lg">
+    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border-x-2 border-green-600 shadow-lg">
       {children}
     </div>
   );
@@ -112,7 +112,11 @@ const WeatherBot = () => {
 
   
   return (
-    <div className="h-screen bg-gray-900 bg-gradient-to-br from-gray-900 to-green-800 text-white p-8 overflow-hidden">
+    <div className="h-screen bg-gray-900 bg-gradient-to-r from-gray-900 to-black-800 text-white p-8 overflow-hidden">
+      {/* Green Glows */}
+    <div className="absolute bottom-5 left-60 w-40 h-56 rounded-full bg-green-700 opacity-75 blur-3xl z-10"></div>
+      <div className="absolute top-10 right-16 w-40 h-40 rounded-full bg-green-500/80 opacity-81 blur-3xl"></div>
+
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* <div className="bg-gray-800/80 backdrop-blur-lg rounded-2xl p-6 flex flex-col items-center justify-center  border-x-2 border-green-700"> */}
         <GlassCard>
@@ -126,8 +130,8 @@ const WeatherBot = () => {
           </div>
           <div className="mt-1 w-full">
           <p className="text-gray-400 mt-1 text-center">{weatherData?.description || 'Cloudy with chances of rain'}</p>
-            <h2 className="text-2xl font-bold mb-2 text-center">Safety Recommendations</h2>
-            <ul className="space-y-2 justify-center text-center">
+            <h2 className="text-xl font-bold mb-2 text-center">Safety Recommendations</h2>
+            <ul className="space-y-2 justify-center text-center text-md">
               <li>• Check for proper ventilation and air quality</li>
               <li>• Ensure all electrical equipment is functioning correctly</li>
               <li>• Monitor ground stability and roof conditions</li>
@@ -137,7 +141,9 @@ const WeatherBot = () => {
           </GlassCard>
         {/* </div> */}
          {/* Graph Section */}
-         <div className="bg-gray-800/80 backdrop-blur-lg rounded-2xl pr-9 pt-14 space-y-14  border-x-2 border-green-700">
+        {/* <div className="bg-gray-800/80 backdrop-blur-lg rounded-2xl pr-9 pt-14 space-y-14  border-x-2 border-green-700"> */}
+         <GlassCard> 
+         <div className="pr-9 pt-14 space-y-14  "> 
           {/* Temperature Graph */}
           <ResponsiveContainer width="100%" height={150}>
             <LineChart data={temperatureData}>
@@ -161,7 +167,9 @@ const WeatherBot = () => {
               <Line type="monotone" dataKey="aqi" stroke="#10B981" />
             </LineChart>
           </ResponsiveContainer>
-        </div>
+          </div>
+        {/* </div> */}
+        </GlassCard>
       </div>
 
       {/* {weatherAlert && (

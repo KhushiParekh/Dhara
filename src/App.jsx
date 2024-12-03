@@ -4,7 +4,8 @@ import {
   Route, 
   Routes, 
   Navigate, 
-  Outlet 
+  Outlet ,
+  useLocation,
 } from 'react-router-dom';
 import { 
   Menu as MenuIcon, 
@@ -25,58 +26,29 @@ import UsersTeams from './pages/UsersTeams';
 import Notifications from './pages/Notifications';
 import DailyTasks from './pages/DailyTasks';
 import WeatherBot from './pages/WeatherBot';
+import CalenderPage from './pages/CalenderPage';
 import PermissionsPage from './pages/PermissionPage';
 
 function MainLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const location = useLocation();  // Get current route
 
-//   const toggleSidebar = () => {
-//     setIsSidebarCollapsed(!isSidebarCollapsed);
-//   };
-
-//   return (
-//     <div className="flex min-h-screen bg-[#121212] text-white">
-//       {/* Sidebar with Toggle */}
-//       <div 
-//         className={`
-//           fixed left-0 top-0 bottom-0 z-40 transition-all duration-300 ease-in-out
-//           ${isSidebarCollapsed ? 'w-16' : 'w-44'}
-//         `}
-//       >
-//         <Sidebar isCollapsed={isSidebarCollapsed} />
-        
-//         {/* Sidebar Toggle Button */}
-//         <button 
-//           onClick={toggleSidebar} 
-//           className="absolute top-4 right-0 transform translate-x-1/2 
-//           bg-green-500 text-black p-1 rounded-full z-50"
-//         >
-//           {isSidebarCollapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-//         </button>
-//       </div>
-      
-//       {/* Main Content Area */}
-//       <div 
-//         className={`
-//           flex-1 flex flex-col transition-all duration-300 ease-in-out
-//           ${isSidebarCollapsed ? 'ml-1' : 'ml-56'}
-//         `}
-//       >
-//         <Header />
-        
-//         <main className="flex-grow p-4 overflow-y-auto">
-//           <Outlet />
-//         </main>
-//       </div>
-//     </div>
-//   );
-// }
+  const getCurrentSection = () => {
+    // Map URL paths to section names
+    const path = location.pathname;
+    if (path.includes('users-teams')) return 'Users & Teams';
+    if (path.includes('notifications')) return 'Notifications';
+    if (path.includes('daily-tasks')) return 'Daily Tasks';
+    if (path.includes('weather-bot')) return 'Weather Bot';
+    if (path.includes('calender')) return 'Calender';
+    return 'Home';  // Default to Home
+  };
 const toggleSidebar = () => {
   setIsSidebarCollapsed(!isSidebarCollapsed);
 };
 
 return (
-  <div className="flex min-h-screen bg-[#121212] text-white">
+  <div className="flex min-h-screen bg-[#121212] text-white ">
     <div 
       className={`
         fixed left-0 top-0 bottom-0 z-40 
@@ -89,7 +61,7 @@ return (
       <button
         onClick={toggleSidebar}
         className="absolute top-4 right-0 transform translate-x-1/2 
-          bg-green-500 text-black p-2 rounded-full shadow-lg z-50 
+          bg-green-700 text-black p-2 rounded-full shadow-lg z-50 
           hover:bg-green-600 transition-all duration-300 ease-out"
       >
         {isSidebarCollapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -102,8 +74,8 @@ return (
         ${isSidebarCollapsed ? 'ml-16' : 'ml-48'}
       `}
     >
-      <Header />
-      <main className="flex-grow p-6 overflow-y-auto">
+       <Header currentSection={getCurrentSection()} />
+      <main className="flex-grow  overflow-y-auto">
         <Outlet />
       </main>
     </div>
@@ -135,7 +107,6 @@ function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="daily-tasks" element={<DailyTasks />} />
           <Route path="weather-bot" element={<WeatherBot />} />
-         
         </Route>
         
         {/* Catch-all Route */}
@@ -146,3 +117,46 @@ function App() {
 }
 
 export default App;
+
+
+
+//og
+// import React from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import Header from './components/Header';
+// import Sidebar from './components/Sidebar';
+// import Home from './pages/Home';
+// import UsersTeams from './pages/UsersTeams';
+// import Notifications from './pages/Notifications';
+// import DailyTasks from './pages/DailyTasks';
+// // import Equipment from './pages/Equipment';
+// // import Projects from './pages/Projects';
+// import MineOnboarding from './pages/MineOnboarding';
+// import JoinMine from './pages/JoinMine';
+// import PermissionsPage from './pages/PermissionPage';
+// import WeatherBot from './pages/WeatherBot';
+// function App() {
+//   return (
+//     <Router>
+//       <div className="flex min-h-screen">
+//         <Sidebar />
+//         <div className="flex-1 bg-[#121212]">
+//           <Header />
+//           <Routes>
+//             <Route path="/" element={<Home/>} />
+//             <Route path="/users-teams" element={<UsersTeams/>} />
+//             <Route path="/permissions/:roleName" element={<PermissionsPage />} />
+//             <Route path="/notifications" element={<Notifications/>} />
+//             <Route path="/daily-tasks" element={<DailyTasks/>} />
+//             <Route path="/weather-bot" element={<WeatherBot/>} />
+//             {/* <Route path="/equipment" component={Equipment} />
+//             <Route path="/projects" component={Projects} /> */}
+//             <Route path="/onboard-mine" element={<MineOnboarding/>} />
+//             <Route path="/join-mine" element={<JoinMine/>} />
+//           </Routes>
+//         </div>
+//       </div>
+//     </Router>
+//   );
+// }
+// export default App;
