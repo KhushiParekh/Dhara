@@ -7,7 +7,7 @@ function Header({ currentSection }) {
     <header 
       className="sticky top-0 bg-black text-white flex items-center p-4 z-10 border-b border-gray-800 text-md" style={{ height: '65.5px' }} >
          {/* Current Section Name */}
-      <h2 className="text-xl font-bold text-green-800 pl-7">
+      <h2 className="text-xl font-bold text-green-700 pl-7">
         {currentSection || 'Dashboard'}
       </h2>
 

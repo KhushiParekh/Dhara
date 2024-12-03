@@ -25,7 +25,7 @@
   }
   
   .glassmorphic-modal {
-    background: rgba(117, 230, 243, 0.164);
+    background: rgba(72, 100, 114, 0.66);
     backdrop-filter: blur(25px);
     border: 1px solid rgba(38, 80, 50, 0.829);
   }
