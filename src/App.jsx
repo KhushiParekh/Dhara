@@ -114,8 +114,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Landing Page - First Entry Point */}
-        <Route path="/" element={<MineLandingPage />} />
+
+       
+
+       {/* Landing Page - First Entry Point */}
+       <Route path="/" element={<MineLandingPage />} /> 
         
         {/* Onboarding Routes */}
         <Route path="/onboard-mine" element={<MineOnboarding />} />
@@ -132,6 +135,7 @@ function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="daily-tasks" element={<DailyTasks />} />
           <Route path="weather-bot" element={<WeatherBot />} />
+         
         </Route>
         
         {/* Catch-all Route */}
