@@ -28,6 +28,7 @@ import DailyTasks from './pages/DailyTasks';
 import WeatherBot from './pages/WeatherBot';
 import CalenderPage from './pages/CalenderPage';
 import PermissionsPage from './pages/PermissionPage';
+import SchedulerPage from './pages/SchedulerPage';
 
 function MainLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -41,6 +42,7 @@ function MainLayout() {
     if (path.includes('daily-tasks')) return 'Daily Tasks';
     if (path.includes('weather-bot')) return 'Weather Bot';
     if (path.includes('calender')) return 'Calender';
+    if (path.includes('schedular')) return 'Schedular';
     return 'Home';  // Default to Home
   };
 const toggleSidebar = () => {
@@ -107,6 +109,8 @@ function App() {
           <Route path="notifications" element={<Notifications />} />
           <Route path="daily-tasks" element={<DailyTasks />} />
           <Route path="weather-bot" element={<WeatherBot />} />
+          <Route path="calendar" element={<CalenderPage />} />
+          <Route path="scheduler" element={<SchedulerPage />} />
         </Route>
         
         {/* Catch-all Route */}
