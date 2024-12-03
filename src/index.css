@@ -11,3 +11,22 @@
       /* scrollbar-width: none;  Firefox */
     /* }
   } */ 
+
+  .glassmorphic-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glassmorphic-calendar {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .glassmorphic-modal {
+    background: rgba(117, 230, 243, 0.164);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(38, 80, 50, 0.829);
+  }
+  

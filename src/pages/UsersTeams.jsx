@@ -89,21 +89,11 @@ const UserTeams = () => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-gray-900 text-white">
+    <div className="flex flex-col h-full bg-gradient-to-r from-gray-900 to-black-800  text-white">
       {/* Header */}
-      <div className="bg-gray-900/80 p-6 flex justify-between items-center border-b border-gray-800">
-        <h2 className="text-xl font-semibold">Users & Teams</h2>
-        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center gap-2">
-          <Plus size={20} />
-          {getAddButtonText()}
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 bg-gray-900/95 p-6">
-        {/* Tabs and Search */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-2 bg-gray-800/50 rounded-lg p-1">
+      {/* Tabs*/}
+      <div className=" bg-gradient-to-r from-gray-900/80 to-black-800  p-6 flex justify-between items-center border-b border-gray-800">
+      <div className="flex items-center gap-2 bg-gray-800/50 rounded-lg p-1">
             <button
               className={`flex items-center px-4 py-2 rounded-md ${activeTab === 'users' ? 'bg-green-700 text-white' : 'text-gray-400 hover:bg-gray-700/50'}`}
               onClick={() => setActiveTab('users')}
@@ -127,6 +117,16 @@ const UserTeams = () => {
             </button>
           </div>
 
+        <button className="bg-green-700 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center gap-2">
+          <Plus size={20} />
+          {getAddButtonText()}
+        </button>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1  bg-gradient-to-r from-gray-900/95 to-black-800  p-6">
+        {/* Search */}
+        <div className="flex justify-between items-center mb-6 flex-row-reverse">
           <div className="flex items-center gap-4">
             <select
               className="bg-gray-800 text-white rounded-md px-4 py-2 border border-gray-700 focus:outline-none focus:border-green-600"
@@ -155,11 +155,11 @@ const UserTeams = () => {
         </div>
 
         {/* Tables */}
-        <div className="bg-gray-800/50 rounded-lg shadow-xl">
+        <div className="bg-gray-800/50 rounded-lg shadow-xl backdrop-blur-xl bg-opacity-10">
           {activeTab === 'users' && (
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-700 text-gray-400">
+                <tr className="border-b border-gray-700 text-gray-400 ">
                   <th className="px-6 py-4 text-left">Name</th>
                   <th className="px-6 py-4 text-left">Role</th>
                   <th className="px-6 py-4 text-left">Email</th>
@@ -294,316 +294,3 @@ const UserTeams = () => {
 
 export default UserTeams;
 
-
-// import React, { useState } from 'react';
-// import { 
-//   Users, 
-//   UserPlus, 
-//   Users as TeamIcon, 
-//   Settings, 
-//   Search, 
-//   MoreVertical, 
-//   Edit, 
-//   Trash 
-// } from 'lucide-react';
-
-// const UserTeams = () => {
-//   const [activeTab, setActiveTab] = useState('users');
-//   const [searchQuery, setSearchQuery] = useState('');
-
-//   const handleTabChange = (tab) => {
-//     setActiveTab(tab);
-//     setSearchQuery('');
-//   };
-
-//   const handleSearch = (e) => {
-//     setSearchQuery(e.target.value);
-//   };
-
-//   const users = [
-//     { name: 'John Doe', role: 'Miner', email: 'john@example.com', phone: '123-456-7890', status: 'Active' },
-//     { name: 'Jane Smith', role: 'Supervisor', email: 'jane@example.com', phone: '987-654-3210', status: 'Active' },
-//     { name: 'Bob Johnson', role: 'Engineer', email: 'bob@example.com', phone: '555-555-5555', status: 'Inactive' },
-//     { name: 'Sarah Lee', role: 'Safety Officer', email: 'sarah@example.com', phone: '111-222-3333', status: 'Active' }
-//   ];
-
-//   const teams = [
-//     { name: 'Shift A', members: ['John Doe', 'Jane Smith'] },
-//     { name: 'Shift B', members: ['Bob Johnson', 'Sarah Lee'] }
-//   ];
-
-//   const roles = [
-//     { name: 'Miner', users: 2, lastUpdated: '2 days ago' },
-//     { name: 'Supervisor', users: 1, lastUpdated: '1 week ago' },
-//     { name: 'Engineer', users: 1, lastUpdated: '3 months ago' },
-//     { name: 'Safety Officer', users: 1, lastUpdated: '6 months ago' }
-//   ];
-
-//   const filteredUsers = users.filter(user =>
-//     user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//     user.role.toLowerCase().includes(searchQuery.toLowerCase())
-//   );
-
-//   return (
-//     <div className="space-y-6">
-//       <div className="flex items-center justify-between">
-//         <h2 className="text-2xl font-bold text-white">Users & Teams</h2>
-//         <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full flex items-center gap-2">
-//           <UserPlus size={16} />
-//           Create Team
-//         </button>
-//       </div>
-
-//       <div className="bg-gray-900/80 backdrop-blur-lg rounded-2xl p-4 space-y-4">
-//         <div className="flex items-center gap-4">
-//           <button
-//             className={`flex items-center gap-2 ${activeTab === 'users' ? 'text-green-500' : 'text-gray-400 hover:text-gray-300'}`}
-//             onClick={() => handleTabChange('users')}
-//           >
-//             <Users size={16} />
-//             Users
-//           </button>
-//           <button
-//             className={`flex items-center gap-2 ${activeTab === 'teams' ? 'text-green-500' : 'text-gray-400 hover:text-gray-300'}`}
-//             onClick={() => handleTabChange('teams')}
-//           >
-//             <TeamIcon size={16} />
-//             Teams
-//           </button>
-//           <button
-//             className={`flex items-center gap-2 ${activeTab === 'roles' ? 'text-green-500' : 'text-gray-400 hover:text-gray-300'}`}
-//             onClick={() => handleTabChange('roles')}
-//           >
-//             <Settings size={16} />
-//             Roles
-//           </button>
-//         </div>
-
-//         <div className="relative">
-//           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-//           <input
-//             type="text"
-//             placeholder="Search"
-//             value={searchQuery}
-//             onChange={handleSearch}
-//             className="w-full bg-gray-900/30 text-gray-300 pl-10 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
-//           />
-//         </div>
-
-//         {activeTab === 'users' && (
-//           <div className="overflow-x-auto">
-//             <table className="w-full text-left">
-//               <thead>
-//                 <tr className="text-gray-400">
-//                   <th className="py-2 px-4">Name</th>
-//                   <th className="py-2 px-4">Role</th>
-//                   <th className="py-2 px-4">Email</th>
-//                   <th className="py-2 px-4">Phone</th>
-//                   <th className="py-2 px-4">Status</th>
-//                   <th className="py-2 px-4">Actions</th>
-//                 </tr>
-//               </thead>
-//               <tbody>
-//                 {filteredUsers.map((user, index) => (
-//                   <tr key={index} className={`border-t border-gray-900 ${index % 2 === 0 ? 'bg-gray-900/30' : ''}`}>
-//                     <td className="py-3 px-4">{user.name}</td>
-//                     <td className="py-3 px-4">{user.role}</td>
-//                     <td className="py-3 px-4">{user.email}</td>
-//                     <td className="py-3 px-4">{user.phone}</td>
-//                     <td className="py-3 px-4">
-//                       <span className={`px-2 py-1 rounded-full ${user.status === 'Active' ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'}`}>
-//                         {user.status}
-//                       </span>
-//                     </td>
-//                     <td className="py-3 px-4 flex items-center gap-2">
-//                       <button className="text-gray-400 hover:text-gray-300">
-//                         <Edit size={16} />
-//                       </button>
-//                       <button className="text-gray-400 hover:text-gray-300">
-//                         <Trash size={16} />
-//                       </button>
-//                       <button className="text-gray-400 hover:text-gray-300">
-//                         <MoreVertical size={16} />
-//                       </button>
-//                     </td>
-//                   </tr>
-//                 ))}
-//               </tbody>
-//             </table>
-//           </div>
-//         )}
-
-//         {activeTab === 'teams' && (
-//           <div className="space-y-4">
-//             {teams.map((team, index) => (
-//               <div key={index} className="bg-gray-900/30 rounded-lg p-4">
-//                 <div className="flex items-center justify-between mb-2">
-//                   <h3 className="text-lg font-medium text-white">{team.name}</h3>
-//                   <button className="text-gray-400 hover:text-gray-300">
-//                     <MoreVertical size={16} />
-//                   </button>
-//                 </div>
-//                 <div className="text-gray-400">
-//                   {team.members.join(', ')}
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         )}
-
-//         {activeTab === 'roles' && (
-//           <div className="overflow-x-auto">
-//             <table className="w-full text-left">
-//               <thead>
-//                 <tr className="text-gray-400">
-//                   <th className="py-2 px-4">Role</th>
-//                   <th className="py-2 px-4">Users</th>
-//                   <th className="py-2 px-4">Last Updated</th>
-//                   <th className="py-2 px-4">Actions</th>
-//                 </tr>
-//               </thead>
-//               <tbody>
-//                 {roles.map((role, index) => (
-//                   <tr key={index} className={`border-t border-gray-900 ${index % 2 === 0 ? 'bg-gray-900/30' : ''}`}>
-//                     <td className="py-3 px-4">{role.name}</td>
-//                     <td className="py-3 px-4">{role.users}</td>
-//                     <td className="py-3 px-4">{role.lastUpdated}</td>
-//                     <td className="py-3 px-4 flex items-center gap-2">
-//                       <button className="text-gray-400 hover:text-gray-300">
-//                         <Edit size={16} />
-//                       </button>
-//                       <button className="text-gray-400 hover:text-gray-300">
-//                         <MoreVertical size={16} />
-//                       </button>
-//                     </td>
-//                   </tr>
-//                 ))}
-//               </tbody>
-//             </table>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UserTeams;
-
-// // import React from 'react';
-
-// // function UsersTeams() {
-// //   const users = [
-// //     { id: 1, name: 'John Doe', email: 'john.doe@mine.com', phone: '+1 (555) 1234', role: 'Manager', location: 'Select' },
-// //     { id: 2, name: 'Jane Smith', email: 'jane.smith@mine.com', phone: '+1 (555) 5678', role: 'Shift Lead', location: 'Select' },
-// //     { id: 3, name: 'Bob Johnson', email: 'bob.johnson@mine.com', phone: '+1 (555) 9012', role: 'Safety Officer', location: 'Select' },
-// //     { id: 4, name: 'Alice Williams', email: 'alice.williams@mine.com', phone: '+1 (555) 3456', role: 'Technician', location: 'Select' }
-// //   ];
-
-// //   const teams = [
-// //     { id: 1, name: 'Team Alpha', members: ['John Doe', 'Jane Smith'] },
-// //     { id: 2, name: 'Team Bravo', members: ['Bob Johnson', 'Alice Williams'] },
-// //     { id: 3, name: 'Team Charlie', members: ['John Doe', 'Alice Williams'] }
-// //   ];
-
-// //   const roles = [
-// //     { id: 1, name: 'Manager', permissions: ['View', 'Edit', 'Delete'] },
-// //     { id: 2, name: 'Shift Lead', permissions: ['View', 'Edit'] },
-// //     { id: 3, name: 'Safety Officer', permissions: ['View', 'Edit'] },
-// //     { id: 4, name: 'Technician', permissions: ['View'] }
-// //   ];
-
-// //   return (
-// //     <div className="p-8 text-[#c3c3c3]">
-// //       <h1 className="text-2xl font-bold mb-6">Users & Teams</h1>
-// //       <div className="bg-[#1b1b1b] shadow-md rounded-md p-6">
-// //         <h2 className="text-xl font-bold mb-4">Users</h2>
-// //         <table className="w-full">
-// //           <thead>
-// //             <tr>
-// //               <th className="text-left p-2">Name</th>
-// //               <th className="text-left p-2">Email</th>
-// //               <th className="text-left p-2">Phone</th>
-// //               <th className="text-left p-2">Role</th>
-// //               <th className="text-left p-2">Location</th>
-// //               <th className="text-left p-2">Actions</th>
-// //             </tr>
-// //           </thead>
-// //           <tbody>
-// //             {users.map((user) => (
-// //               <tr key={user.id}>
-// //                 <td className="p-2">{user.name}</td>
-// //                 <td className="p-2">{user.email}</td>
-// //                 <td className="p-2">{user.phone}</td>
-// //                 <td className="p-2">{user.role}</td>
-// //                 <td className="p-2">{user.location}</td>
-// //                 <td className="p-2">
-// //                   <button className="bg-[#3c763d] hover:bg-[#4d8c4e] text-white px-2 py-1 rounded-md mr-2">
-// //                     Edit
-// //                   </button>
-// //                   <button className="bg-[#c72222] hover:bg-[#d63333] text-white px-2 py-1 rounded-md">
-// //                     Delete
-// //                   </button>
-// //                 </td>
-// //               </tr>
-// //             ))}
-// //           </tbody>
-// //         </table>
-// //       </div>
-// //       <div className="bg-[#1b1b1b] shadow-md rounded-md p-6 mt-6">
-// //         <h2 className="text-xl font-bold mb-4">Teams</h2>
-// //         <table className="w-full">
-// //           <thead>
-// //             <tr>
-// //               <th className="text-left p-2">Team Name</th>
-// //               <th className="text-left p-2">Members</th>
-// //               <th className="text-left p-2">Actions</th>
-// //             </tr>
-// //           </thead>
-// //           <tbody>
-// //             {teams.map((team) => (
-// //               <tr key={team.id}>
-// //                 <td className="p-2">{team.name}</td>
-// //                 <td className="p-2">{team.members.join(', ')}</td>
-// //                 <td className="p-2">
-// //                   <button className="bg-[#3c763d] hover:bg-[#4d8c4e] text-white px-2 py-1 rounded-md mr-2">
-// //                     Edit
-// //                   </button>
-// //                   <button className="bg-[#c72222] hover:bg-[#d63333] text-white px-2 py-1 rounded-md">
-// //                     Delete
-// //                   </button>
-// //                 </td>
-// //               </tr>
-// //             ))}
-// //           </tbody>
-// //         </table>
-// //       </div>
-// //       <div className="bg-[#1b1b1b] shadow-md rounded-md p-6 mt-6">
-// //         <h2 className="text-xl font-bold mb-4">Roles</h2>
-// //         <table className="w-full">
-// //           <thead>
-// //             <tr>
-// //               <th className="text-left p-2">Role Name</th>
-// //               <th className="text-left p-2">Permissions</th>
-// //               <th className="text-left p-2">Actions</th>
-// //             </tr>
-// //           </thead>
-// //           <tbody>
-// //             {roles.map((role) => (
-// //               <tr key={role.id}>
-// //                 <td className="p-2">{role.name}</td>
-// //                 <td className="p-2">{role.permissions.join(', ')}</td>
-// //                 <td className="p-2">
-// //                   <button className="bg-[#3c763d] hover:bg-[#4d8c4e] text-white px-2 py-1 rounded-md mr-2">
-// //                     Edit
-// //                   </button>
-// //                 </td>
-// //               </tr>
-// //             ))}
-// //           </tbody>
-// //         </table>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // export default UsersTeams;

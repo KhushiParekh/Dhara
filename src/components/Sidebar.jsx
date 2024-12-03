@@ -8,7 +8,8 @@ import {
   Notifications as NotificationIcon, 
   Task as TaskIcon,
   CloudOutlined as WeatherIcon,
-  AccountCircle as ProfileIcon
+  AccountCircle as ProfileIcon,
+  Event as EventIcon
 } from '@mui/icons-material';
 
 const sidebarNavigation = [
@@ -16,7 +17,8 @@ const sidebarNavigation = [
   { to: '/app/users-teams', icon: <UsersIcon />, label: 'Users & Teams' },
   { to: '/app/notifications', icon: <NotificationIcon />, label: 'Notifications' },
   { to: '/app/daily-tasks', icon: <TaskIcon />, label: 'Daily Tasks' },
-  { to: '/app/weather-bot', icon: <WeatherIcon />, label: 'Weather Bot' }
+  { to: '/app/weather-bot', icon: <WeatherIcon />, label: 'Weather Bot' },
+  { to: '/app/calender', icon: <EventIcon />, label: 'Calender' }
 ];
 
 const Sidebar = ({ isCollapsed }) => {
@@ -27,7 +29,7 @@ const Sidebar = ({ isCollapsed }) => {
       to={to}
       className={`
         flex items-center p-3 text-gray-300 hover:bg-gray-800 transition-all duration-200 ease-out
-        ${location.pathname === to ? 'bg-gray-800 text-green-500' : ''}
+        ${location.pathname === to ? 'bg-slate-900 text-green-700/70' : ''}
       `}
     >
       {icon && <span className={`${isCollapsed ? 'mx-auto' : 'mr-3'}`}>{icon}</span>}
@@ -44,7 +46,7 @@ const Sidebar = ({ isCollapsed }) => {
     `}>
       <div className="sticky top-0 bg-black/95 p-4 text-center border-b border-gray-800 z-10">
         <h1 className={`
-          text-green-500 font-bold transition-all duration-300 ease-in-out
+          text-green-700 font-bold transition-all duration-300 ease-in-out
           ${isCollapsed ? 'text-2xl' : 'text-2xl'}
         `}>
           {isCollapsed ? 'D' : 'DHARA'}
