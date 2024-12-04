@@ -9,9 +9,9 @@ import {
   Task as TaskIcon,
   CloudOutlined as WeatherIcon,
   AccountCircle as ProfileIcon,
-  Event as EventIcon
+  Event as EventIcon,
 } from '@mui/icons-material';
-
+import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
 const sidebarNavigation = [
   { to: '/app', icon: <HomeIcon />, label: 'Home' },
   { to: '/app/users-teams', icon: <UsersIcon />, label: 'Users & Teams' },
@@ -19,7 +19,7 @@ const sidebarNavigation = [
   { to: '/app/daily-tasks', icon: <TaskIcon />, label: 'Daily Tasks' },
   { to: '/app/weather-bot', icon: <WeatherIcon />, label: 'Weather Bot' },
   { to: '/app/calendar', icon: <EventIcon />, label: 'Calender' },
-  { to: '/app/scheduler', icon: <EventIcon />, label: 'Scheduler' },
+  { to: '/app/scheduler', icon: <ScheduleOutlinedIcon  />, label: 'Scheduler' },
 ];
 
 const Sidebar = ({ isCollapsed }) => {

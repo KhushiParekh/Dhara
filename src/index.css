@@ -13,12 +13,16 @@
   } */ 
 
   .glassmorphic-header {
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-color: rgb(22 101 52);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
   }
   
   .glassmorphic-calendar {
+    
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);

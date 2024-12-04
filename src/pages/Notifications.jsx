@@ -71,14 +71,14 @@ const Notifications = () => {
       <div className="absolute top-10 right-16 w-40 h-40 rounded-full bg-green-700/80 opacity-81 blur-3xl"></div>
 
       <div className="flex-1 bg-lime-800/10 p-6 min-h-screen">
-        <div className="glassmorphic-header rounded-lg p-6">
+        <div className="bg-gray-800/50 blur-40 rounded-lg p-6 border-x-2 border-green-800 mt-12">
           <div className="flex justify-between items-center mb-6">
             <div>
-              <h1 className="text-3xl text-white font-semibold flex items-center">
+              <h1 className="text-2xl text-white font-semibold flex items-center">
                 <NotificationsActive className="mr-3" /> 
-                Notifications
+                Stay updated with your mine operations
               </h1>
-              <p className="text-gray-400">Stay updated with your mine operations</p>
+              <p className="text-gray-400"></p>
             </div>
             <div className="space-x-3">
               <Button 

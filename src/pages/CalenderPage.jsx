@@ -166,7 +166,7 @@ const handleDeleteEvent = () => {
         {/* top part */}
         <div className="flex space-x-4 mb-6">
           {/* Left Header Div */}
-          <div className="glassmorphic-header pl-3 rounded-lg flex justify-between items-center w-2/3">
+          <div className="bg-gray-800/50 blur-60  border-x-2 border-green-800 pl-3 rounded-lg flex justify-between items-center w-2/3">
             <div className="flex-1  pr-4  w-auto">
               <h1 className="text-3xl text-white font-semibold">
                 Mine Manager Calendar
@@ -196,7 +196,7 @@ const handleDeleteEvent = () => {
             />
           </div>
           {/* Right Calendar Preview Div */}
-          <div className="glassmorphic-header p-4 rounded-lg w-1/2 pending task">
+          <div className="bg-gray-800/50 blur-60  border-x-2 border-green-800  p-4 rounded-lg w-1/2 pending task">
             <div className="flex items-center mb-4">
               <CalendarToday className="text-white mr-2" />
               <h2 className="text-xl text-white font-semibold">
@@ -239,7 +239,7 @@ const handleDeleteEvent = () => {
           </div>
         </div>
 
-        <div className="glassmorphic-calendar p-4 rounded-lg flex">
+        <div className="bg-gray-700/50 blur-60  border-x-2 border-green-800  p-4 rounded-lg flex">
           <div className="calendar-container flex-1">
             <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}

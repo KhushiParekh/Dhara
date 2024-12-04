@@ -12,6 +12,7 @@ import {
 import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
+import {SelectField } from '../components/InputFields';
 
 // Simulated user data - In a real app, this would come from an API or context
 const mockUsers = [
@@ -120,82 +121,78 @@ const SchedulerPage = () => {
         {/* Main Content Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Task Input Section */}
-          <div className="bg-gray-800/60 backdrop-blur-md p-6 rounded-xl space-y-6">
+          <div className="bg-gray-800/50 blur-60  border-x-2 border-green-800  p-6 rounded-xl space-y-6">
             <div className="space-y-4">
-              {/* Task Title Input */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
-                  <PlusCircle className="mr-2 h-4 w-4 text-green-500" />
-                  Task Title
-                </label>
-                <input
-                  type="text"
-                  value={newTask.title}
-                  onChange={(e) =>
-                    setNewTask({ ...newTask, title: e.target.value })
-                  }
-                  placeholder="Enter task title"
-                  className="w-full bg-gray-700 border-none text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                />
-              </div>
+             {/* Task Title Input */}
+      <div>
+        <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+          <PlusCircle className="mr-2 h-4 w-4 text-green-500" />
+          Task Title
+        </label>
+        <input
+          type="text"
+          value={newTask.title}
+          onChange={(e) =>
+            setNewTask({ ...newTask, title: e.target.value })
+          }
+          placeholder="Enter task title"
+          className="w-full bg-gray-700 border-none text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 transition-all duration-300"
+        />
+      </div>
 
-              {/* Shift Incharge Dropdown */}
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
-                  <Users className="mr-2 h-4 w-4 text-green-500" />
-                  Shift Incharge
-                </label>
-                <select
-                  value={newTask.shiftIncharge}
-                  onChange={handleShiftInchargeChange}
-                  className="w-full bg-gray-700 border-none text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                >
-                  <option value="">Select Shift Incharge</option>
-                  {users.map((user) => (
-                    <option key={user.id} value={user.name}>
-                      {user.name} - {user.department}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {/* Shift Incharge Dropdown (replaced with custom SelectField) */}
+      <div>
+        <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+          <Users className="mr-2 h-4 w-4 text-green-500" />
+          Shift Incharge
+        </label>
+        <SelectField
+          label="Select Shift Incharge"
+          name="shiftIncharge"
+          value={newTask.shiftIncharge}
+          onChange={handleShiftInchargeChange}
+          options={users.map((user) => `${user.name} - ${user.department}`)}
+        />
+      </div>
 
               {/* Time and Priority Inputs */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Start Time
-                  </label>
-                  <TimePicker
-                    onChange={(value) => 
-                      setNewTask({ 
-                        ...newTask, 
-                        startTime: value || '00:00' 
-                      })
-                    }
-                    value={newTask.startTime}
-                    className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
-                    disableClock={true}
-                    clearIcon={null}
-                  />
-                </div>
-                <div>
-                  <label className="flex flex-col text-sm font-medium text-gray-300 mb-2">
-                    End Time:
-                  </label>
-                  <TimePicker
-                    onChange={(value) => 
-                      setNewTask({ 
-                        ...newTask, 
-                        endTime: value || '00:00' 
-                      })
-                    }
-                    value={newTask.endTime}
-                    className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
-                    disableClock={true}
-                    clearIcon={null}
-                  />
-                </div>
-              </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-300 mb-2">
+            Start Time
+          </label>
+          <TimePicker
+            onChange={(value) => 
+              setNewTask({ 
+                ...newTask, 
+                startTime: value || '00:00' 
+              })
+            }
+            value={newTask.startTime}
+            className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
+            disableClock={true}
+            clearIcon={null}
+          />
+        </div>
+        <div>
+          <label className="flex flex-col text-sm font-medium text-gray-300 mb-2">
+            End Time:
+          </label>
+          <TimePicker
+            onChange={(value) => 
+              setNewTask({ 
+                ...newTask, 
+                endTime: value || '00:00' 
+              })
+            }
+            value={newTask.endTime}
+            className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
+            disableClock={true}
+            clearIcon={null}
+          />
+        </div>
+      </div>
+
 
               {/* Priority Selector */}
               <div>
@@ -218,7 +215,7 @@ const SchedulerPage = () => {
           </div>
 
           {/* Description and Submit Section */}
-          <div className="bg-gray-800/60 backdrop-blur-md p-6 rounded-xl flex flex-col">
+          <div className="bg-gray-800/50 blur-60  border-x-2 border-green-800  p-6 rounded-xl flex flex-col">
             <div className="flex-grow">
               <label className="block text-sm font-medium text-gray-300 mb-2">
                 Task Description
@@ -245,7 +242,7 @@ const SchedulerPage = () => {
 
         {/* Scheduled Tasks Section */}
         {tasks.length > 0 && (
-          <div className="mt-10 bg-gray-800/60 backdrop-blur-md rounded-xl p-6">
+          <div className="mt-10 bg-gray-800/50 blur-60  border-x-2 border-green-800  rounded-xl p-6">
             <h3 className="text-xl font-semibold mb-4 text-white flex items-center">
               <Check className="mr-2 text-green-500" /> Scheduled Tasks
             </h3>
