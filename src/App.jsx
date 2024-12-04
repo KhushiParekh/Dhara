@@ -29,6 +29,7 @@ import WeatherBot from './pages/WeatherBot';
 import CalenderPage from './pages/CalenderPage';
 import PermissionsPage from './pages/PermissionPage';
 import SchedulerPage from './pages/SchedulerPage';
+import LogSummarizer from './pages/LogSummry';
 
 function MainLayout() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -43,6 +44,7 @@ function MainLayout() {
     if (path.includes('weather-bot')) return 'Weather Bot';
     if (path.includes('calender')) return 'Calender';
     if (path.includes('schedular')) return 'Schedular';
+    if (path.includes('summary')) return 'Log Summary';
     return 'Home';  // Default to Home
   };
 const toggleSidebar = () => {
@@ -111,6 +113,7 @@ function App() {
           <Route path="weather-bot" element={<WeatherBot />} />
           <Route path="calendar" element={<CalenderPage />} />
           <Route path="scheduler" element={<SchedulerPage />} />
+          <Route path="summary" element={<LogSummarizer />} />
         </Route>
         
         {/* Catch-all Route */}

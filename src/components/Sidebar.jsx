@@ -20,6 +20,7 @@ const sidebarNavigation = [
   { to: '/app/weather-bot', icon: <WeatherIcon />, label: 'Weather Bot' },
   { to: '/app/calendar', icon: <EventIcon />, label: 'Calender' },
   { to: '/app/scheduler', icon: <ScheduleOutlinedIcon  />, label: 'Scheduler' },
+  { to: '/app/summary', icon: <ScheduleOutlinedIcon  />, label: 'Log Summary' },
 ];
 
 const Sidebar = ({ isCollapsed }) => {
