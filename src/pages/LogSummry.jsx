@@ -125,6 +125,7 @@ const LogSummary = () => {
                 height: '35px',
                 fontSize: '14px',  
                 border: 'none',
+                color: 'white',
                 outline:'none',
               }}
             >
@@ -137,15 +138,16 @@ const LogSummary = () => {
             </Select>
           </div>
 
-          <div className=" flex bg-gray-700 border-x-1 border-green-800 items-center justify-center  rounded-lg border-x-2 border-green-800 h-10 mt-4">
+          <div className=" flex bg-gray-700 border-x-1 border-green-800 items-center justify-center  rounded-lg border-x-2 border-green-800 h-10 mt-4 ">
             <Select
               value={shiftInChargeFilter}
               onChange={handleShiftInChargeFilter}
               displayEmpty
-              className=" flex bg-gray-700 border-x-1 border-green-800 items-center justify-center  rounded-lg  h-10"
+              className=" flex bg-gray-700 border-x-1 border-green-800 items-center justify-center  rounded-lg text-white-500 h-10"
               style={{
                 height: '35px',
-                fontSize: '14px',  
+                fontSize: '14px', 
+                color: 'white',
                 border: 'none',
                 outline:'none',
               }}
