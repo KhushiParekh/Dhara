@@ -14,37 +14,39 @@ import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import {SelectField } from '../components/InputFields';
 import axios from 'axios';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 // Simulated user data - In a real app, this would come from an API or context
-// const mockUsers = [
-//   { 
-//     id: 1, 
-//     name: 'John Smith', 
-//     role: 'Shift Incharge', 
-//     department: 'Morning Shift' 
-//   },
-//   { 
-//     id: 2, 
-//     name: 'Sarah Williams', 
-//     role: 'Shift Incharge', 
-//     department: 'Extraction Team' 
-//   },
-//   { 
-//     id: 3, 
-//     name: 'Mike Rodriguez', 
-//     role: 'Shift Incharge', 
-//     department: 'Night Shift' 
-//   },
-//   { 
-//     id: 4, 
-//     name: 'Emily Chen', 
-//     role: 'Shift Incharge', 
-//     department: 'Safety Monitoring' 
-//   }
-// ];
+const mockUsers = [
+  { 
+    id: 1, 
+    name: 'John Smith', 
+    role: 'Shift Incharge', 
+    department: 'Morning Shift' 
+  },
+  { 
+    id: 2, 
+    name: 'Sarah Williams', 
+    role: 'Shift Incharge', 
+    department: 'Extraction Team' 
+  },
+  { 
+    id: 3, 
+    name: 'Mike Rodriguez', 
+    role: 'Shift Incharge', 
+    department: 'Night Shift' 
+  },
+  { 
+    id: 4, 
+    name: 'Emily Chen', 
+    role: 'Shift Incharge', 
+    department: 'Safety Monitoring' 
+  }
+];
 
 const SchedulerPage = () => {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState({
     title: '',
@@ -52,8 +54,8 @@ const SchedulerPage = () => {
     shiftInchargeId: null,
     priority: 'medium',
     description: '',
-    startTime: '00:00',
-    endTime: '00:00',
+    startDate: null,
+    endDate: null,
   });
 
   // Simulate fetching users with shift incharge role
@@ -191,6 +193,9 @@ const endDateTime = new Date(localEndDateTime.getTime());
   //   console.log("Orders state after fetch:", orders.length); // Add this log
   // }, [orders]);
   
+  const handleTeamChange = (e) => {
+    setNewTask({ ...newTask, team: e.target.value });
+  };
   
 
   const handleShiftInchargeChange = (e) => {
@@ -211,16 +216,27 @@ const endDateTime = new Date(localEndDateTime.getTime());
       }));
     }
   };
+  const teams = [
+    { id: 1, name: "Team Alpha" },
+    { id: 2, name: "Team Beta" },
+    { id: 3, name: "Team Gamma" },
+  ];
   
-
+  const users = [
+    { id: 1, name: "Team Alpha" },
+    { id: 2, name: "Team Beta" },
+    { id: 3, name: "Team Gamma" },
+  ];
+  
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-r from-gray-900 to-black-800 text-white overflow-auto relative">
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-gray-900 to-black-800 text-white overflow-auto relative">
       {/* Gradient Blurred Backgrounds */}
-      <div className="absolute bottom-32 left-36 w-40 h-56 rounded-full bg-green-800 opacity-75 blur-3xl z-10"></div>
+    
       <div className="absolute top-7 z-21 right-16 w-40 h-40 rounded-full bg-green-700 opacity-81 blur-3xl"></div>
+      <div className="absolute bottom-32 left-36 w-40 h-56 rounded-full bg-green-800 opacity-81 blur-3xl z-10"></div>
 
       {/* Main Container */}
-      <div className="container mx-auto px-4 py-8 relative z-20">
+      <div className="container mx-auto px-4 py-8 relative ">
         {/* Main Content Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Task Input Section */}
@@ -243,60 +259,80 @@ const endDateTime = new Date(localEndDateTime.getTime());
         />
       </div>
 
-              {/* Shift Incharge Dropdown (replaced with custom SelectField) */}
+  <div className="flex flex-col sm:flex-row gap-6">
+  {/* Shift Incharge Dropdown */}
+  <div className="flex-1">
+    <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+      <Users className="mr-2 h-4 w-4 text-green-500" />
+      Shift Incharge
+    </label>
+    <SelectField
+      label="Select Shift Incharge"
+      name="shiftIncharge"
+      value={newTask.shiftIncharge}
+      onChange={handleShiftInchargeChange}
+      options={users.map((user) => `${user.name} - ${user.department}`)}
+    />
+  </div>
+
+  {/* Teams Dropdown */}
+  <div className="flex-1">
+    <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+      <Users className="mr-2 h-4 w-4 text-blue-500" />
+      Teams
+    </label>
+    <SelectField
+      label="Select Team"
+      name="team"
+      value={newTask.team}
+      onChange={handleTeamChange}
+      options={teams.map((team) => team.name)}
+    />
+  </div>
+</div>
+
+
+              {/* Time and Priority Inputs */}
+              <div className="grid grid-cols-2 gap-4">
+      {/* Start Date */}
       <div>
-        <label className="block text-sm font-medium text-gray-300 mb-2 flex items-center">
-          <Users className="mr-2 h-4 w-4 text-green-500" />
-          Shift Incharge
+        <label className="block text-sm font-medium text-gray-300 mb-2 bg-green">
+          Start Date
         </label>
-        <SelectField
-          label="Select Shift Incharge"
-          name="shiftIncharge"
-          value={newTask.shiftIncharge}
-          onChange={handleShiftInchargeChange}
-          options={users.map((user) => `${user.name} - ${user.department}`)}
+        <DatePicker
+          selected={newTask.startDate}
+          onChange={(date) =>
+            setNewTask({
+              ...newTask,
+              startDate: date,
+            })
+          }
+          dateFormat="yyyy-MM-dd"
+          className="w-full bg-gray-700 text-white border-gray-900 rounded-md px-3 py-2"
+          placeholderText="Select Start Date"
         />
       </div>
 
-              {/* Time and Priority Inputs */}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
-            Start Time
-          </label>
-          <TimePicker
-            onChange={(value) => 
-              setNewTask({ 
-                ...newTask, 
-                startTime: value || '00:00' 
-              })
-            }
-            value={newTask.startTime}
-            className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
-            disableClock={true}
-            clearIcon={null}
-          />
-        </div>
-        <div>
-          <label className="flex flex-col text-sm font-medium text-gray-300 mb-2">
-            End Time:
-          </label>
-          <TimePicker
-            onChange={(value) => 
-              setNewTask({ 
-                ...newTask, 
-                endTime: value || '00:00' 
-              })
-            }
-            value={newTask.endTime}
-            className="w-auto bg-gray-700 border-gray-900 flex justify-between rounded-md"
-            disableClock={true}
-            clearIcon={null}
-          />
-        </div>
+      {/* End Date */}
+      <div>
+        <label className="block text-sm font-medium text-gray-300 mb-2">
+          End Date
+        </label>
+        <DatePicker
+          selected={newTask.endDate}
+          onChange={(date) =>
+            setNewTask({
+              ...newTask,
+              endDate: date,
+            })
+          }
+          dateFormat="yyyy-MM-dd"
+          className="w-full bg-gray-700 text-white border-gray-900 rounded-md px-3 py-2"
+          placeholderText="Select End Date"
+        />
       </div>
-
-
+    
+      </div>
               {/* Priority Selector */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">

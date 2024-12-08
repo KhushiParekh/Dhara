@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-// import { getDatabase,ref,set} from "firebase/database";
-// import { app } from "./firebase";
-
 import { 
   BrowserRouter as Router, 
   Route, 
@@ -22,7 +19,6 @@ import Sidebar from './components/Sidebar';
 import MineLandingPage from './pages/LandingPage';
 import MineOnboarding from './pages/MineOnboarding';
 import JoinMine from './pages/JoinMine';
-import axios from 'axios';
 
 // Dashboard Related Imports
 import Home from './pages/Home';
@@ -34,42 +30,7 @@ import CalenderPage from './pages/CalenderPage';
 import PermissionsPage from './pages/PermissionPage';
 import SchedulerPage from './pages/SchedulerPage';
 import LogSummarizer from './pages/LogSummry';
-
-// const db=getDatabase(app);
-
-// const putData=()=>{
-//   set(ref(db,"users/muskan"),{
-//     id:1,
-//     name:"Muskan",
-//     age: 20,
-//   });
-// };
-
-function handleSubmit() {
-  const formData =
-    {
-      id:3,
-      name:"Muskan Sharma",
-      age:34,
-    };
-    axios.post('http://localhost:3000/api', formData)
-        .then((response) => {
-            console.log('Response from backend:', response.data);
-        })
-        .catch((error) => {
-            console.error('Error sending data to backend:', error);
-        });
-}
-
-function OnboardMineWrapper() {
-  // Call handleSubmit with sample data (modify as needed)
-  // const formData = { user: 'exampleUser', action: 'onboard' };
-  handleSubmit();
-  // putData();
-
-  // Render the target component
-  return <MineOnboarding />;
-}
+import GoogleTranslate from './components/GoogleTranslate';
 
 
 function MainLayout() {
@@ -86,14 +47,17 @@ function MainLayout() {
     if (path.includes('calender')) return 'Calender';
     if (path.includes('schedular')) return 'Schedular';
     if (path.includes('summary')) return 'Log Summary';
+  
     return 'Home';  // Default to Home
   };
 const toggleSidebar = () => {
   setIsSidebarCollapsed(!isSidebarCollapsed);
 };
 
+
 return (
   <div className="flex min-h-screen bg-[#121212] text-white ">
+    <GoogleTranslate />
     <div 
       className={`
         fixed left-0 top-0 bottom-0 z-40 
@@ -138,7 +102,7 @@ function App() {
        <Route path="/" element={<MineLandingPage />} /> 
         
         {/* Onboarding Routes */}
-        <Route path="/onboard-mine" element={<OnboardMineWrapper />} />
+        <Route path="/onboard-mine" element={<MineOnboarding />} />
         <Route path="/join-mine" element={<JoinMine />} />
         
         {/* Main Application Layout with Nested Routes */}
@@ -155,6 +119,7 @@ function App() {
           <Route path="calendar" element={<CalenderPage />} />
           <Route path="scheduler" element={<SchedulerPage />} />
           <Route path="summary" element={<LogSummarizer />} />
+          
         </Route>
         
         {/* Catch-all Route */}
